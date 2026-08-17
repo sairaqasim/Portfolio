@@ -1,0 +1,1591 @@
+/* ==========================================================================
+   Saira Qasim, Portfolio
+   Home page built to the Figma frame spec (1080 container, 4-col bento).
+   ========================================================================== */
+
+/* ---- Theme tokens ---- */
+:root {
+  --bg: #FAFAFA;
+  --text: #1A1A1A;
+  --text-soft: #555555;
+  --border: #E5E5E5;
+  --border-strong: #D0D0D0;
+  --card: #FFFFFF;
+  --card-fill: #F0F0F0;
+  --track: #E5E5E5;
+
+  /* Mockup panel, the Banner fill from the Figma frame */
+  --mockup-bg: #F0F5F2;
+
+  /* Per-card media well fills, straight from the Figma frame */
+  --well-hatla2ee: #FFFFFF;
+  --well-proconnect: #F2FAFC;
+  --well-german: #FFF1F2;
+  --well-zaam: #FAF0E6;
+  --well-behance: #F3F7FF;
+}
+
+[data-theme="dark"] {
+  --bg: #222222;
+  --text: #F0F0F0;
+  --text-soft: #A8A8A8;
+  --border: #333333;
+  --border-strong: #444444;
+  --card: #2A2A2A;
+  --card-fill: #333333;
+  --track: #333333;
+
+  --well-hatla2ee: #333333;
+  --well-proconnect: #24333A;
+  --well-german: #3A2E30;
+  --well-zaam: #37312A;
+  --well-behance: #2B3038;
+
+  /* Mockups, images and video sit on this in dark mode */
+  --mockup-bg: #2A3536;
+}
+
+/* ---- Base ---- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Lato", -apple-system, "Segoe UI", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 25px;
+  background: var(--bg);
+  color: var(--text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--text);
+  color: var(--bg);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--text);
+  color: var(--bg);
+  padding: 0.5rem 1rem;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
+/* 1080 max container with 24px inner padding, matches the frame */
+.wrap {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- Header (64px, 208px outer padding) ---- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 64px;
+  padding: 0 208px;
+  background: var(--bg);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background-color 0.3s ease;
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.logo {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 30px;
+  letter-spacing: -0.36px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.site-nav a {
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 25px;
+  color: var(--text-soft);
+  transition: color 0.2s ease;
+}
+
+.site-nav a:hover {
+  color: var(--text);
+}
+
+/* Theme toggle, 36px circle, 1px #D0D0D0 */
+.theme-toggle {
+  appearance: none;
+  width: 36px;
+  height: 36px;
+  padding: 1px 6px;
+  border: 1px solid var(--border-strong);
+  border-radius: 18px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--text);
+}
+
+.theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.theme-toggle .icon-sun { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+/* ---- Main: 88px top padding, 48px between sections ---- */
+.home-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 88px 0 0;
+  gap: 48px;
+}
+
+/* ---- Hero ---- */
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 11.5px;
+  width: 100%;
+  max-width: 1080px;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.hero .greeting {
+  margin: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--text);
+}
+
+.hero h1 {
+  margin: 0;
+  font-weight: 800;
+  font-size: 72px;
+  line-height: 76px;
+  letter-spacing: -2.16px;
+  color: var(--text);
+}
+
+.hero .positioning {
+  margin: 0;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 43px;
+  color: var(--text);
+}
+
+.hero .role {
+  margin: 4.5px 0 0;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 25px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+/* ==========================================================================
+   Bento grid, 4 × 252px columns, 24px gaps, 320px rows
+   ========================================================================== */
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 320px;
+  gap: 24px;
+  width: 100%;
+  max-width: 1080px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  background: var(--card);
+  border-radius: 16px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    background-color 0.3s ease;
+}
+
+a.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.07);
+}
+
+[data-theme="dark"] a.card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Span helpers */
+.card--w2 { grid-column: span 2; }
+.card--h2 { grid-row: span 2; }
+
+/* Text block */
+.card-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.card-tag {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.card-title {
+  margin: 0;
+  font-weight: 900;
+  font-size: 22px;
+  line-height: 36px;
+  letter-spacing: -0.22px;
+  color: var(--text);
+}
+
+/* Wide cards use the larger title size */
+.card--w2 .card-title {
+  font-size: 26px;
+  line-height: 43px;
+  letter-spacing: -0.26px;
+}
+
+.card-desc {
+  margin: 0;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 23px;
+  color: var(--text-soft);
+}
+
+/* Media well, fills the remaining card height */
+.card-media {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  border-radius: 10px;
+  background: var(--card-fill);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+/* Per-card fills from the frame */
+.card--hatla2ee .card-media   { background: var(--well-hatla2ee); }
+.card--proconnect .card-media { background: var(--well-proconnect); }
+.card--german .card-media     { background: var(--well-german); }
+.card--zaam .card-media       { background: var(--well-zaam); }
+.card--behance .card-media    { background: var(--well-behance); }
+
+.card--behance { gap: 8px; }
+
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Light / dark artwork pairs, swapped by the theme attribute */
+.card-media .art-dark { display: none; }
+
+[data-theme="dark"] .card-media .art-light { display: none; }
+[data-theme="dark"] .card-media .art-dark { display: block; }
+
+/* Placeholder label shown until the real asset is dropped in */
+.card-media .asset-slot {
+  padding: 12px;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--text-soft);
+  border: 1px dashed var(--border-strong);
+  border-radius: 8px;
+  margin: 12px;
+}
+
+/* Photo card, no text, image fills the whole card */
+.card--photo {
+  padding: 0;
+  gap: 0;
+}
+
+.card--photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- Follow cursor ----
+   A pill that trails the pointer over cards carrying data-cursor.
+   Only engaged for fine pointers; keyboard and touch keep the normal cursor. */
+.cursor-pill {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  /* Position comes from an inline transform set in script.js; only the
+     fade is transitioned so the pill tracks the pointer without lag. */
+  transition: opacity 0.18s ease;
+}
+
+.cursor-pill.is-visible {
+  opacity: 1;
+}
+
+/* Hide the system cursor only while the pill is doing the work */
+body.has-follow-cursor [data-cursor],
+body.has-follow-cursor [data-cursor] * {
+  cursor: none;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-pill { display: none; }
+}
+
+/* ---- Bio (below the grid, 684px column, 28/48) ---- */
+.bio {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  max-width: 1080px;
+  padding: 0 24px;
+}
+
+/* width:100% keeps every beat on the same left edge, without it the flex
+   centering would shrink the short paragraphs and stagger them. */
+.bio p {
+  width: 100%;
+  max-width: 684px;
+  margin: 0;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 48px;
+  color: var(--text);
+}
+
+.bio p + p {
+  margin-top: 36px;
+}
+
+/* Lato ships no 500, so emphasis steps straight from 300 to 700 */
+.bio strong {
+  font-weight: 700;
+}
+
+.bio a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ---- Footer ---- */
+.site-footer {
+  padding: 40px 208px 48px;
+  border-top: 1px solid var(--border);
+  transition: border-color 0.3s ease;
+}
+
+.site-footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px 24px;
+}
+
+.footer-note {
+  margin: 0;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 25px;
+  color: var(--text-soft);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 24px;
+}
+
+.footer-links a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 25px;
+  color: var(--text-soft);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--text);
+}
+
+.footer-links svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  flex: none;
+}
+
+/* ==========================================================================
+   Case study pages
+   ========================================================================== */
+
+/* Plain reading-progress bar. On narrow screens it is a thin bar fixed to
+   the top of the viewport; on wide screens the labeled .toc rail replaces
+   it entirely (script.js adds .has-toc to <body>). Progress comes from the
+   --progress custom property that script.js sets on the root element. */
+.read-progress {
+  position: fixed;
+  z-index: 60;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 40vh;
+  background: var(--track);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.read-progress-fill {
+  width: 100%;
+  height: 100%;
+  background: var(--text);
+  transform-origin: top;
+  transform: scaleY(var(--progress, 0));
+}
+
+@media (max-width: 900px) {
+  .read-progress {
+    left: 0;
+    top: 0;
+    transform: none;
+    width: 100%;
+    height: 3px;
+    border-radius: 0;
+  }
+
+  .read-progress-fill {
+    transform-origin: left;
+    transform: scaleX(var(--progress, 0));
+  }
+}
+
+/* ---- Labeled progress rail / table of contents (wide screens) ---- */
+.toc {
+  display: none;
+  position: fixed;
+  z-index: 60;
+  left: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 190px;
+}
+
+@media (min-width: 1200px) {
+  body.has-toc .toc { display: flex; gap: 14px; }
+  body.has-toc .read-progress { display: none; }
+}
+
+.toc-rail {
+  flex: none;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.toc-rail-fill {
+  width: 100%;
+  height: 100%;
+  background: var(--text);
+  transform-origin: top;
+  transform: scaleY(var(--progress, 0));
+}
+
+.toc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toc-list a {
+  display: block;
+  padding: 4px 0;
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 400;
+  color: var(--text-soft);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.toc-list a:hover {
+  color: var(--text);
+}
+
+.toc-list a.is-active {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* Figma "Article" frame: 720 max, 63.25px top / 104px bottom, 48px gaps */
+.case {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 24px 104px;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+
+.case-header h1 {
+  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 0 0.75rem;
+}
+
+.case-summary {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--text-soft);
+  margin: 0 0 1.75rem;
+  line-height: 1.55;
+}
+
+/* Two-tone summary. The Figma uses brand green for the second half; this
+   system has no accent colour, so the emphasis is carried by weight. */
+.case-summary strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
+/* Numbered cards (01/02/03) */
+.pair-grid .num {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--text-soft);
+  margin-bottom: 0.35rem;
+}
+
+/* Left-to-right chip flow (lead integration) */
+.chip-flow {
+  /* Grid, not flex wrap: a fixed column count means the trailing arrow always
+     lands between two chips, never pointing off the end of a row. */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: chip;
+}
+
+.chip-flow li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  border: 1px solid var(--border-strong);
+  border-radius: 10px;
+  padding: 0.95rem 0.85rem;
+  background: var(--card);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* .chip-flow span (the caption) would otherwise beat .icon-tile on display,
+   so the tile has to restate its own centring here. */
+.chip-flow .icon-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  margin: 0 0 0.6rem;
+  border-radius: 8px;
+  font-size: 0;
+  line-height: 0;
+}
+
+.chip-flow .icon-tile svg {
+  display: block;
+  width: 17px;
+  height: 17px;
+}
+
+.chip-flow li:not(:last-child)::after {
+  content: "→";
+  position: absolute;
+  right: -0.55rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8125rem;
+  color: var(--text-soft);
+  background: var(--bg);
+  line-height: 1;
+  z-index: 1;
+}
+
+/* No arrow on the last chip of a row */
+.chip-flow li:nth-child(4n)::after { content: none; }
+
+.chip-flow strong {
+  display: block;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.chip-flow li > span:not(.icon-tile) {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.8125rem;
+  font-weight: 300;
+  line-height: 1.35;
+  color: var(--text-soft);
+}
+
+@media (max-width: 700px) {
+  .chip-flow { grid-template-columns: repeat(2, 1fr); }
+  .chip-flow li:nth-child(4n)::after { content: "→"; }
+  .chip-flow li:nth-child(2n)::after { content: none; }
+}
+
+.case-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 3rem;
+}
+
+.case-meta div {
+  font-size: 0.9375rem;
+}
+
+.case-meta dt {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.75rem;
+  color: var(--text-soft);
+  margin: 0 0 0.25rem;
+}
+
+.case-meta dd {
+  margin: 0;
+  font-weight: 400;
+}
+
+.case section {
+  margin-bottom: 48px;
+}
+
+.case h2 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  margin: 0 0 1rem;
+  scroll-margin-top: 96px;
+}
+
+.case p {
+  font-weight: 300;
+  margin: 0 0 1rem;
+}
+
+.img-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+  margin: 1.5rem 0;
+  border: 2px dashed var(--border-strong);
+  border-radius: 12px;
+  background: var(--card-fill);
+  color: var(--text-soft);
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 1.5rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.img-placeholder--wide {
+  min-height: 420px;
+}
+
+.case-outcome {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--card);
+  padding: 2rem;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* ---- Case study content blocks ---- */
+.case h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 2rem 0 0.5rem;
+}
+
+.case .kicker {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-soft);
+  display: block;
+  margin: 2.5rem 0 0.25rem;
+}
+
+.steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 1.5rem 0;
+  padding: 0;
+}
+
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding: 0 0 1.25rem 3rem;
+  font-weight: 300;
+}
+
+.steps li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  font-weight: 900;
+  font-size: 0.875rem;
+  color: var(--text-soft);
+}
+
+.steps li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 0.8rem;
+  top: 1.6em;
+  bottom: 0.4em;
+  width: 1px;
+  background: var(--border);
+}
+
+.steps strong {
+  display: block;
+  font-weight: 700;
+}
+
+.callout {
+  border-left: 3px solid var(--text);
+  padding: 0.75rem 0 0.75rem 1.5rem;
+  margin: 2rem 0;
+}
+
+.callout p {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.callout .kicker {
+  margin-top: 0;
+}
+
+.table-scroll {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.case-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.case-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+  padding: 0.6rem 1rem 0.6rem 0;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.case-table td {
+  padding: 0.75rem 1rem 0.75rem 0;
+  border-bottom: 1px solid var(--border);
+  font-weight: 300;
+  vertical-align: top;
+}
+
+.case-table td:first-child {
+  font-weight: 700;
+}
+
+.pair-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.pair-grid article {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.3s ease;
+}
+
+.pair-grid h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+.pair-grid p {
+  margin: 0 0 0.5rem;
+  font-size: 0.9375rem;
+}
+
+.pair-grid p:last-child {
+  margin-bottom: 0;
+}
+
+.before-after {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.before-after > div {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+}
+
+.before-after .kicker {
+  margin-top: 0;
+}
+
+.before-after blockquote {
+  margin: 0.5rem 0 0;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-soft);
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.stat-grid article h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.0625rem;
+}
+
+.stat-grid article p {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--text-soft);
+}
+
+@media (max-width: 620px) {
+  .pair-grid,
+  .before-after,
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Case study figures ---- */
+.case figure {
+  margin: 2rem 0;
+}
+
+/* Everything stays inside the 720px article frame (.figure--wide kept
+   as a legacy class; it no longer breaks out of the column). */
+.case figure img,
+.case figure video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+
+/* No wrapper panel, the mockup's own panel is recoloured instead, via a
+   dark variant of each export (see assets/proconnect/*-dark.png). */
+.media-holder,
+.video-holder {
+  line-height: 0;
+}
+
+/* Light / dark artwork pairs inside case studies */
+.case figure .art-dark { display: none; }
+
+[data-theme="dark"] .case figure .art-light { display: none; }
+[data-theme="dark"] .case figure .art-dark { display: block; }
+
+/* ---- Device mockup, rebuilt from the Figma frame ----
+   No exported panel: the panel, the phone body and its shadow are all drawn
+   in CSS to the Figma spec (Banner 720×622 · phone 270×563.66 · screen
+   252×546), so the panel colour is a real token and swaps cleanly by theme.
+   Percentages keep every part in proportion as the column resizes. */
+.device {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 720 / 622;
+  background: var(--mockup-bg);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+.device-phone {
+  position: absolute;
+  left: 50%;
+  top: var(--phone-top, 50%);
+  transform: translate(-50%, var(--phone-shift, -50%));
+  width: 37.5%;                      /* 270 / 720 */
+  aspect-ratio: 270 / 563.66;
+  /* Percentage padding resolves against the PANEL's width, not the phone's,
+     so the 9px bezel is 9/720 of the panel, not 9/270 of the phone. */
+  padding: 1.25%;
+  box-sizing: border-box;
+  border-radius: 16.296% / 7.806%;   /* 44px on 270 × 563.66 */
+  background: linear-gradient(150deg, #1A1D1B 0%, #333834 100%);
+  box-shadow: 0 45px 86px -35px rgba(16, 42, 28, 0.5);
+}
+
+/* Scoped through .case figure so it outranks the base
+   `.case figure video { width:100%; height:auto }` rule. */
+.case figure .device-phone > video,
+.case figure .device-phone > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14.286% / 6.593%;   /* 36px on 252 × 546 */
+  background: #000;
+}
+
+/* ---- Icon tiles on cards ---- */
+.icon-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--card-fill);
+  color: var(--text);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.icon-tile svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* ---- Inline chip row (attachments, property cards, …) ---- */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip-row li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  background: var(--card);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.chip-row svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.case figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-soft);
+}
+
+/* Videos autoplay muted, so each gets a sound toggle sitting over the
+   bottom-right of the frame (inside .video-holder, added by script.js so it
+   doesn't overlap the caption). */
+.video-holder {
+  position: relative;
+  line-height: 0;
+}
+
+.video-sound {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.55);
+  color: #FFFFFF;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.video-sound:hover {
+  background: rgba(0, 0, 0, 0.75);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.video-sound svg {
+  width: 19px;
+  height: 19px;
+}
+
+/* Opening video sits between the summary and the meta row, full column width. */
+.case-hero {
+  margin: 1.75rem 0 0;
+}
+
+/* ---- Back to top ---- */
+.to-top {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 70;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease,
+    visibility 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .to-top {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.to-top:hover {
+  border-color: var(--text);
+}
+
+.to-top svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 620px) {
+  .to-top {
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+/* ---- Flow diagrams ----
+   Monochrome rebuild of the Figma user-journey boards. Node roles are
+   carried by fill and border weight, not colour. */
+/* The staged diagram is wider than the 720 article column, so it scrolls
+   sideways inside .flow. .flow-wrap carries the affordances: a fade on the
+   right edge, a nudge button, and a hint line. script.js toggles
+   .can-scroll-right / .can-scroll-left as the reader scrolls. */
+.flow-wrap {
+  position: relative;
+  margin: 2rem 0;
+}
+
+/* No CSS scroll-behavior here, the nudge button animates via scrollBy(),
+   and having both fight each other stops the scroll from moving at all. */
+.flow {
+  width: 100%;
+  margin: 0;
+  overflow-x: auto;
+  padding-bottom: 0.75rem;
+}
+
+/* Edge fades, only drawn on the side that has more content */
+.flow-wrap::before,
+.flow-wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 1.75rem;
+  width: 56px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1;
+}
+
+.flow-wrap::after {
+  right: 0;
+  background: linear-gradient(to right, transparent, var(--bg) 85%);
+}
+
+.flow-wrap::before {
+  left: 0;
+  background: linear-gradient(to left, transparent, var(--bg) 85%);
+}
+
+.flow-wrap.can-scroll-right::after,
+.flow-wrap.can-scroll-left::before {
+  opacity: 1;
+}
+
+/* Nudge button, sitting on top of the right fade */
+.flow-next {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  background: var(--card);
+  color: var(--text);
+  cursor: pointer;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.flow-wrap.can-scroll-right .flow-next {
+  display: inline-flex;
+}
+
+.flow-next:hover {
+  border-color: var(--text);
+  transform: translateY(-50%) translateX(2px);
+}
+
+.flow-next svg {
+  width: 18px;
+  height: 18px;
+}
+
+.flow-hint {
+  margin: 0.75rem 0 0;
+  font-size: 0.8125rem;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-soft);
+  display: none;
+}
+
+.flow-wrap.can-scroll .flow-hint {
+  display: block;
+}
+
+.flow-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+}
+
+.flow-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flow-legend span::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid var(--text);
+}
+
+.flow-legend .lg-screen::before { background: var(--card); }
+.flow-legend .lg-decision::before { background: var(--text); }
+.flow-legend .lg-system::before { border-style: dashed; background: transparent; }
+
+/* Staged columns (website journey), scrolls sideways inside the 720 frame */
+.flow-track {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  min-width: 880px;
+}
+
+.flow-stage {
+  flex: 1;
+  min-width: 168px;
+  padding-right: 1.75rem;
+  position: relative;
+}
+
+.flow-stage:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0.75rem;
+  top: 2.6rem;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid var(--border-strong);
+  border-right: 1px solid var(--border-strong);
+  transform: rotate(45deg);
+}
+
+.flow-stage > h4 {
+  margin: 0 0 0.75rem;
+  font-size: 0.6875rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-soft);
+}
+
+.flow-node {
+  display: block;
+  padding: 0.6rem 0.75rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 6px;
+  background: var(--card);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.35;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.flow-node--decision {
+  background: var(--text);
+  color: var(--bg);
+  border-color: var(--text);
+  font-weight: 700;
+}
+
+.flow-node--system {
+  border-style: dashed;
+  background: transparent;
+  color: var(--text-soft);
+  font-weight: 300;
+}
+
+/* Nested tree (mobile IA) */
+.flow-tree,
+.flow-tree ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.flow-tree {
+  min-width: 0;
+  columns: 2;
+  column-gap: 2rem;
+}
+
+.flow-tree > li {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+}
+
+.flow-tree > li > .flow-node {
+  font-weight: 700;
+}
+
+.flow-tree ul {
+  margin: 0.5rem 0 0 0.85rem;
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--border);
+}
+
+.flow-tree ul .flow-node {
+  font-size: 0.78125rem;
+  padding: 0.45rem 0.65rem;
+}
+
+@media (max-width: 700px) {
+  .flow-tree { columns: 1; }
+}
+
+/* ---- Explore other projects (case study pages) ---- */
+.explore {
+  border-top: 1px solid var(--border);
+  padding: 4rem 0 5rem;
+  transition: border-color 0.3s ease;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--text-soft);
+  margin: 0 0 1.5rem;
+}
+
+.explore .bento {
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 320px;
+}
+
+.explore .card--md {
+  grid-column: span 1;
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .site-header,
+  .site-footer {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-main {
+    padding-top: 56px;
+    gap: 40px;
+  }
+
+  .hero h1 {
+    font-size: 52px;
+    line-height: 58px;
+    letter-spacing: -1.5px;
+  }
+
+  .hero .positioning {
+    font-size: 22px;
+    line-height: 34px;
+  }
+
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card--w2 { grid-column: span 2; }
+  .card--h2 { grid-row: span 1; }
+
+  .explore .bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bio p {
+    font-size: 22px;
+    line-height: 38px;
+  }
+}
+
+@media (max-width: 620px) {
+  .hero h1 {
+    font-size: 40px;
+    line-height: 46px;
+    letter-spacing: -1px;
+  }
+
+  .hero .positioning {
+    font-size: 19px;
+    line-height: 30px;
+  }
+
+  .bento,
+  .explore .bento {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 300px;
+  }
+
+  .card--w2,
+  .card--h2 {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  .site-nav {
+    gap: 16px;
+  }
+
+  .bio p {
+    font-size: 19px;
+    line-height: 32px;
+  }
+
+  .case {
+    padding-top: 2.5rem;
+  }
+
+  .case-meta {
+    gap: 1.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,9 @@
+# macOS
+.DS_Store
+
+# Local tooling
+.claude/settings.local.json
+
+# Original Figma exports — kept locally as source, not needed to serve the site.
+# Everything the pages actually reference lives elsewhere in assets/.
+assets/Zaam case study/
